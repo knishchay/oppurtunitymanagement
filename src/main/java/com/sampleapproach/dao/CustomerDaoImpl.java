@@ -32,15 +32,15 @@ public class CustomerDaoImpl extends JdbcDaoSupport  {
 
 	
 	public void insert(Customer cus) {
-		 String sql = "INSERT INTO customer " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)" ;
+		 String sql = "INSERT INTO customer " + "(NAME, AGE) VALUES (?, ?)" ;
 				     getJdbcTemplate().update(sql, new Object[]{
-				     cus.getCustId(), cus.getName(), cus.getAge()
+				     cus.getName(), cus.getAge()
 				 });		
 	}
 
 	
 	public void inserBatch(List<Customer> customers) {
-		  String sql = "INSERT INTO customer " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
+		  String sql = "INSERT INTO customer " + "(NAME, AGE) VALUES (?, ?)";
 		    getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
 		      public void setValues(PreparedStatement ps, int i) throws SQLException {
 		        Customer customer = customers.get(i);
@@ -64,7 +64,8 @@ public class CustomerDaoImpl extends JdbcDaoSupport  {
 	    List<Customer> result = new ArrayList<Customer>();
 	    for(Map<String, Object> row:rows){
 	      Customer cus = new Customer();
-	      cus.setCustId((Integer)row.get("cust_id"));
+	      long custId = (Long)row.get("cust_id");
+	      cus.setCustId((int) custId);
 	      cus.setName((String)row.get("name"));
 	      cus.setAge((Integer) row.get("age"));
 	      result.add(cus);

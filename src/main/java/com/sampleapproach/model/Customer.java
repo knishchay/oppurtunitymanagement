@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Customer implements Serializable{
     private static final long serialVersionUID = 1L;
     int custId;
-    String name;
+    String acName;
     int age;
  
     public Customer(){
@@ -13,7 +13,7 @@ public class Customer implements Serializable{
  
     public Customer(int custId, String name, int age)     {
         this.custId = custId;
-        this.name = name;
+        this.acName = name;
         this.age = age;
     }
  
@@ -24,10 +24,10 @@ public class Customer implements Serializable{
         this.custId = custId;
     }
     public String getName() {
-        return name;
+        return acName;
     }
     public void setName(String name) {
-        this.name = name;
+        this.acName = name;
     }
     public int getAge() {
         return age;
@@ -38,7 +38,7 @@ public class Customer implements Serializable{
  
     @Override
     public String toString() {
-        return "Customer [age=" + age + ", custId=" + custId + ", name=" + name
+        return "Customer [age=" + age + ", custId=" + custId + ", name=" + acName
         + "]";
     }
 }
